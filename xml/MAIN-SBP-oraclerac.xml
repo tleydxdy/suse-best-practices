@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+d<?xml version="1.0" encoding="UTF-8"?>
 <!--<?oxygen RNGSchema="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="xml"?>-->
 <!DOCTYPE article [
 <!ENTITY % entity SYSTEM "entity-decl.ent">
@@ -7,8 +7,8 @@
 <article role="sbp" xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="art.sbp.oraclerac"
     xml:lang="en">
-    <info><title>Installing Oracle RAC on SUSE Linux Enterprise Server 12</title><subtitle>Oracle
-            RAC 12.1.0.2.0 and SUSE Linux Enterprise Server 12 (x86_64)</subtitle>
+    <info><title>在 SUSE Linux Enterprise Server 12 上安装 Oracle RAC</title><subtitle>Oracle
+            RAC 12.1.0.2.0 与 SUSE Linux Enterprise Server 12 (x86_64)</subtitle>
         <!--<orgname>SUSE Best Practices</orgname>-->
         <productname>SUSE Linux Enterprise Server</productname>
         <productnumber>12 SP1</productnumber>
@@ -34,10 +34,7 @@
             </author>
         <date><?dbtimestamp format="B d, Y" ?></date>
         <abstract>
-            <para>In database computing, Oracle Real Application Clusters (RAC) provides software
-                for clustering and high availability in Oracle database environments. Oracle
-                includes RAC with the Standard Edition, provided the nodes are clustered using
-                Oracle Clusterware.</para>
+            <para>在数据库计算中，Oracle Real Application Clusters（RAC）为 Oracle 数据库环境中的集群和高可用性提供软件。 如果使用Oracle Clusterware对节点进行集群，则Oracle将RAC与Standard Edition一起提供。</para>
             <para>SUSE Linux Enterprise Server provides Oracle customers a scalable platform for
                 demanding workloads and applications such as Oracle Database. Oracle and SUSE have
                 teamed up to enable Linux in enterprises with Oracle Database and have created a
