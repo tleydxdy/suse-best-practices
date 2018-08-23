@@ -7,8 +7,8 @@ d<?xml version="1.0" encoding="UTF-8"?>
 <article role="sbp" xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="art.sbp.oraclerac"
     xml:lang="en">
-    <info><title>在 SUSE Linux Enterprise Server 12 上安装 Oracle RAC</title><subtitle>Oracle
-            RAC 12.1.0.2.0 与 SUSE Linux Enterprise Server 12 (x86_64)</subtitle>
+    <info><title>在 &sls; 12 上安装 Oracle RAC</title><subtitle>Oracle
+            RAC 12.1.0.2.0 与 &sls; 12 (x86_64)</subtitle>
         <!--<orgname>SUSE Best Practices</orgname>-->
         <productname>SUSE Linux Enterprise Server</productname>
         <productnumber>12 SP1</productnumber>
@@ -34,37 +34,27 @@ d<?xml version="1.0" encoding="UTF-8"?>
             </author>
         <date><?dbtimestamp format="B d, Y" ?></date>
         <abstract>
-            <para>在数据库计算中，Oracle Real Application Clusters（RAC）为 Oracle 数据库环境中的集群和高可用性提供软件。 如果使用Oracle Clusterware对节点进行集群，则Oracle将RAC与Standard Edition一起提供。</para>
-            <para>SUSE Linux Enterprise Server provides Oracle customers a scalable platform for
-                demanding workloads and applications such as Oracle Database. Oracle and SUSE have
-                teamed up to enable Linux in enterprises with Oracle Database and have created a
-                world-class solution that offers real-grid benefits for IT data centers today. This
-                document provides the details for installing Oracle RAC 12.1.0.2.0 on SUSE Linux
-                Enterprise Server 12 OS.</para>
+            <para>在数据库计算中，Oracle Real Application Clusters（RAC）为 Oracle 数据库环境中提供集群和高可用性软件。 如果使用 Oracle Clusterware 对节点进行集群，Oracle 将与 Standard Edition 一起提供 RAC。</para>
+            <para>SUSE Linux Enterprise Server 为 Oracle 客户提供了可扩展的平台，可满足 Oracle 数据库等要求苛刻的工作负载和应用程序。 Oracle 和 SUSE 联手在 Oracle 数据库在企业中实现 Linux，并创建了世界一流的解决方案，为当今的 IT 数据中心提供实际的网格优势。 本文档提供了在 &sls; 12 OS 上安装 Oracle RAC 12.1.0.2.0 的详细信息。</para>
         </abstract></info>
     <sect1 xml:id="sec.introduction">
-        <title>Introduction</title>
-        <para>This document provides the details for installing Oracle RAC 12.1.0.2.0 on SUSE Linux
-            Enterprise Server 12. For the example at hand, the x86_64 version of both the Oracle
-            Database 12c Enterprise and SUSE Linux Enterprise Server is used. Similar steps apply to
-            other platforms (x86, IA64, etc.). If you encounter any problem or have general
-            questions, submit your query to
-            <email>suse-oracle@listx.novell.com</email>.</para>
-        <para>The official Oracle product documentation is available at: <link
+        <title>介绍</title>
+        <para>本文档提供了在 &sls; 12 上安装 Oracle RAC 12.1.0.2.0 的详细信息。此示例使用了 Oracle Database 12c Enterprise 和 SUSE Linux Enterprise Server 的 x86_64 版本。 类似的步骤适用于其他平台（x86，IA64 等）。 如果您有任何问题，请提交到 <email>suse-oracle@listx.novell.com</email>。</para>
+        <para>Oracle 官方产品文档可从以下位置获得：<link
                 xlink:href="http://docs.oracle.com/en/"/></para>
     </sect1>
     <sect1 xml:id="sec.hw_and_sw">
-        <title>Hardware and Software Requirements</title>
-        <bridgehead>Hardware Requirements</bridgehead>
+        <title>硬件和软件要求</title>
+        <bridgehead>硬件要求</bridgehead>
         <table>
-            <title>Hardware Requirements</title>
+            <title>硬件要求</title>
             <tgroup cols="2">
                 <colspec colwidth="1*"/>
                 <colspec colwidth="1*"/>
                 <thead>
                     <row>
-                        <entry>Requirement</entry>
-                        <entry>Minimum</entry>
+                        <entry>项目</entry>
+                        <entry>最低要求</entry>
                     </row>
                 </thead>
                 <tbody>
@@ -73,29 +63,29 @@ d<?xml version="1.0" encoding="UTF-8"?>
                         <entry>32 GB</entry>
                     </row>
                     <row>
-                        <entry>Swap space</entry>
-                        <entry>Approximately twice the size of RAM</entry>
+                        <entry>Swap 空间</entry>
+                        <entry>大约为 RAM 的两倍</entry>
                     </row>
                     <row>
-                        <entry>Disk space in /tmp</entry>
+                        <entry>/tmp 的硬盘空间</entry>
                         <entry>8 GB</entry>
                     </row>
                     <row>
-                        <entry>Disk space for software files</entry>
+                        <entry>软件文件的硬盘空间</entry>
                         <entry>8 GB</entry>
                     </row>
                     <row>
-                        <entry>Disk space for database files</entry>
+                        <entry>数据库文件的硬盘空间</entry>
                         <entry>8 GB</entry>
                     </row>
                 </tbody>
             </tgroup>
         </table>
-        <bridgehead>Software Requirements</bridgehead>
+        <bridgehead>软件要求</bridgehead>
         <para>SUSE:</para>
         <itemizedlist>
             <listitem>
-                <para>SUSE Linux Enterprise Server 12 SP1 (x86_64)</para>
+                <para>&sls; 12 SP1 (x86_64)</para>
                 <para>(<link xlink:href="http://download.suse.de/install"/>)</para>
             </listitem>
         </itemizedlist>
@@ -110,42 +100,39 @@ d<?xml version="1.0" encoding="UTF-8"?>
         </itemizedlist>
     </sect1>
     <sect1 xml:id="sec.testing_info">
-        <title>Testing 4-Node Cluster Information</title>
+        <title>示例用 4 节点群集信息</title>
         <itemizedlist>
             <listitem>
-                <para>HP DL360 Gen9 Server (Intel Xeon 2x12 core ~ 48 CPU) with 64GB RAM</para>
+                <para>HP DL360 Gen9 服务器（Intel Xeon 2x12 核 ~ 48 CPU）与 64GB RAM</para>
             </listitem>
             <listitem>
-                <para>4 NIC per server (two bonded as active/passive), plus a Static IP
-                    Address</para>
+                <para>每台服务器 4 个 NIC（两个绑定为主动/被动）附加一个静态 IP 地址</para>
             </listitem>
             <listitem>
-                <para>Local HDD (500 GB)</para>
+                <para>本地 HDD (500 GB)</para>
             </listitem>
             <listitem>
-                <para>Three shared SAN Partition ( ASM: 30 GB and NFS: 400 GB, Other: 600 B)</para>
+                <para>三个共享的 SAN 分区（ASM：30 GB、NFS：400 GB 与 其他：600 B）</para>
             </listitem>
             <listitem>
-                <para>SUSE Linux Enterprise Server 12 SP1 (x86_64)</para>
+                <para>&sls; 12 SP1 (x86_64)</para>
             </listitem>
             <listitem>
-                <para>Kernel version: 3.12.49-11-default</para>
+                <para>内核版本：3.12.49-11-default</para>
             </listitem>
         </itemizedlist>
     </sect1>
     <sect1 xml:id="sec.prerequisites">
-        <title>Prerequisites</title>
+        <title>先决条件</title>
         <sect2 xml:id="sec.install_sles">
-            <title>Installing &sls; 12</title>
-            <para>Install &sls; 12 on each node of the cluster. To do so, follow the instructions in
-                the official &sls; documentation at <link
-                    xlink:href="https://www.suse.com/documentation/sles-12/"/>
+            <title>安装 &sls; 12</title>
+            <para>在群集的每个节点上安装 &sls; 12。 为此，请按照 &sls; 官方文档中的说明进行操作，网址为 <link
+                    xlink:href="https://www.suse.com/zh-cn/documentation/sles-12/"/>
             </para>
         </sect2>
         <sect2 xml:id="sec.network_config">
-            <title>Network Configuration</title>
-            <para>The network configuration for your Oracle RAC installation should look as
-                follows:</para>
+            <title>网络配置</title>
+            <para>Oracle RAC 安装的网络配置应类似于如下所示：</para>
             <screen>
             #Private:
             10.1.1.1        c2n1-priv
@@ -174,27 +161,25 @@ d<?xml version="1.0" encoding="UTF-8"?>
     </sect1>
 
     <sect1 xml:id="sec.rac_installation">
-        <title>Oracle RAC Installation</title>
-        <para>The following sections explain how to perform your Oracle RAC installation.</para>
+        <title>安装 Oracle RAC</title>
+        <para>以下部分介绍了如何执行 Oracle RAC 安装。</para>
 
         <sect2 xml:id="sec.grid_infra">
-            <title>Installing Oracle Grid Infrastructure</title>
+            <title>安装 Oracle Grid Infrastructure</title>
 
             <sect3 xml:id="sec.grid_prep">
-                <title>Preparation</title>
-                <para>Log in to the SUSE Linux Enterprise Server 12 64-bit OS as a
-                    non-administration user. Download the Oracle Database 12c Release 1 Grid
-                    Infrastructure (12.1.0.2.0) for Linux x86-64.</para>
-                <para>Extract <filename>grid.zip</filename> and run the installer
-                        <command>'./runInstaller'</command> from Grid ShipHome.</para>
+                <title>准备步骤</title>
+                <para>以非管理用户身份登录 &sls; 12 64位操作系统。 下载适用于 Linux x86-64 的 Oracle Database 12c Release 1 Grid
+                    Infrastructure (12.1.0.2.0)。</para>
+                <para>提取 <filename>grid.zip</filename> 并从 Grid ShipHome 运行安装程序 <command>'./runInstaller'</command> 。</para>
             </sect3>
 
             <sect3 xml:id="sec.grid_installation">
-                <title>Installation</title>
-                <para>For the actual installation, follow the steps below:</para>
+                <title>安装</title>
+                <para>对于实际安装，请按照以下步骤操作：</para>
                 <procedure>
                     <step>
-                        <para>Select <emphasis role="strong">Installation Option</emphasis>.</para>
+                        <para>选择 <emphasis role="strong">Installation Option</emphasis>。</para>
                         <figure>
                             <title>Installation Option </title>
                             <mediaobject>
@@ -208,12 +193,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Install and Configure Oracle
-                                Grid Infrastructure for a Cluster</emphasis>", then click <emphasis
-                                role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Install and Configure Oracle
+                                Grid Infrastructure for a Cluster</emphasis> 选项，然后点击 <emphasis
+                                role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Cluster Type</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Cluster Type</emphasis>。</para>
                         <figure>
                             <title>Cluster Type</title>
                             <mediaobject>
@@ -227,12 +212,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Configure a Standard
-                                Cluster</emphasis>", then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Configure a Standard
+                                Cluster</emphasis> 选项，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Installation Type</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Installation Type</emphasis>。</para>
                         <figure>
                             <title>Installation Type </title>
                             <mediaobject>
@@ -246,12 +231,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Advanced
-                                Installation</emphasis>", then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Advanced
+                                Installation</emphasis> 选项，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Product Languages</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Product Languages</emphasis>。</para>
                         <figure>
                             <title>Product Languages</title>
                             <mediaobject>
@@ -265,12 +250,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select all languages, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择全部语言，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Fill in the required <emphasis role="strong">Grid Plug and Play
-                                Information</emphasis>.</para>
+                        <para>填入要求的 <emphasis role="strong">Grid Plug and Play
+                                Information</emphasis>。</para>
                         <figure>
                             <title>Grid Plug and Play Information</title>
                             <mediaobject>
@@ -284,16 +269,15 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Fill in the information as displayed in the screenshot, then click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
-                        <para>For more details about the GNS configuration consult the official
-                            Oracle documentation at <link
+                        <para>依照页面截图中显示的信息填写，然后点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
+                        <para>有关GNS配置的更多详细信息，请参阅 <link
                                 xlink:href="https://docs.oracle.com/database/121/CWLIN/toc.htm"
-                            />.</para>
+                            /> 上的 Oracle 官方文档</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Cluster Node
-                            Information</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Cluster Node
+                            Information</emphasis>。</para>
                         <figure>
                             <title>Cluster Node Information </title>
                             <mediaobject>
@@ -307,13 +291,10 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Provide the list of nodes with their public host name and virtual
-                            host name, then click <emphasis role="strong">Next</emphasis> to
-                            continue.</para>
+                        <para>提供节点列表及其公共主机名和虚拟主机名，然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Specify the <emphasis role="strong">Network Interface Usage</emphasis>
-                            .</para>
+                        <para>指定 <emphasis role="strong">Network Interface Usage</emphasis>。</para>
                         <figure>
                             <title>Network Interface Usage</title>
                             <mediaobject>
@@ -327,13 +308,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Provide the details of the interfaces that are used by Oracle Grid for
-                            public and private traffic, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>提供 Oracle Grid 用于公共和专用流量的接口的详细信息，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Fill in the <emphasis role="strong">Storage Option
-                                Information</emphasis>.</para>
+                        <para>填入 <emphasis role="strong">Storage Option
+                                Information</emphasis>。</para>
                         <figure>
                             <title>Storage Option Information</title>
                             <mediaobject>
@@ -347,13 +327,13 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Use Standard ASM for
-                                storage</emphasis>, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Use Standard ASM for
+                                storage</emphasis>，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Create ASM Disk
-                            Group</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Create ASM Disk
+                            Group</emphasis>。</para>
                         <figure>
                             <title>Create AMS Disk Group</title>
                             <mediaobject>
@@ -367,12 +347,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Depending on your needs, create an <emphasis role="strong"> ASM Disk
-                                Group </emphasis>, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>根据您的需要，创建 <emphasis role="strong"> ASM Disk
+                                Group </emphasis>，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Specify the <emphasis role="strong">ASM Password</emphasis>.</para>
+                        <para>指定 <emphasis role="strong">ASM Password</emphasis>。</para>
                         <figure>
                             <title>ASM Password</title>
                             <mediaobject>
@@ -386,12 +366,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Fill in the ASM Password as shown in the screenshot above, then click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>依照上面的页面截图填写 ASM 密码，然后点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Define the <emphasis role="strong">Failure Isolation
-                                Support</emphasis>.</para>
+                        <para>定义 <emphasis role="strong">Failure Isolation
+                                Support</emphasis>。</para>
                         <figure>
                             <title>Failure Isolation Support</title>
                             <mediaobject>
@@ -405,12 +385,11 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Do not use IPMI</emphasis>,
-                            then click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Do not use IPMI</emphasis>，然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Specify the <emphasis role="strong">Management
-                            Options</emphasis>.</para>
+                        <para>指定 <emphasis role="strong">Management
+                            Options</emphasis>。</para>
                         <figure>
                             <title>Management Options</title>
                             <mediaobject>
@@ -424,13 +403,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>If you select or deselect the option <emphasis role="strong">Register
-                                with EM</emphasis> depends on your needs. After you made your choice
-                            click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>根据您的需要选择或取消选择 <emphasis role="strong">Register
+                                with EM</emphasis> 选项，然后点击  <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="">Privileged Operating System
-                                Groups</emphasis>.</para>
+                        <para>下一步为 <emphasis role="">Privileged Operating System
+                                Groups</emphasis>。</para>
                         <figure>
                             <title>Privileged Operating System Groups</title>
                             <mediaobject>
@@ -444,12 +422,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>The operating system groups are selected by default. Click <emphasis
-                                role="strong">Next</emphasis> to continue.</para>
+                        <para>操作系统组为默认选择。 点击 <emphasis
+                                role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Specify the <emphasis role="strong">Installation
-                            Location</emphasis>.</para>
+                        <para>指定 <emphasis role="strong">Installation
+                            Location</emphasis>。</para>
                         <figure>
                             <title>Installation Location</title>
                             <mediaobject>
@@ -463,12 +441,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Fill in the <emphasis role="strong">Oracle base</emphasis> and the
-                                <emphasis role="strong">Software location</emphasis>, then click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>填入 <emphasis role="strong">Oracle base</emphasis> 和 
+                                <emphasis role="strong">Software location</emphasis>，然后点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Create the <emphasis role="strong">Inventory</emphasis>.</para>
+                        <para>创建 <emphasis role="strong">Inventory</emphasis>。</para>
                         <figure>
                             <title>Create Inventory</title>
                             <mediaobject>
@@ -482,13 +460,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>If this is your first installation on this host, specify a directory
-                            for the installation metadata files. Click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>如果这是您在此主机上的第一次安装，请指定安装元数据文件的目录。点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Root Script Execution
-                                Configuration</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Root Script Execution
+                                Configuration</emphasis>。</para>
                         <figure>
                             <title>Root Script Execution Configuration</title>
                             <mediaobject>
@@ -502,16 +479,12 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>While configuring the software, you need to perform certain operations
-                            as <emphasis role="strong">root</emphasis> user. Choose the option as
-                            shown above. The <emphasis role="strong">Installer</emphasis> will then
-                            perform these operations automatically. Fill in the password for
-                                <emphasis role="strong">root</emphasis> user. Click <emphasis
-                                role="strong">Next</emphasis> to continue.</para>
+                        <para>配置软件时，您需要以 <emphasis role="strong">root</emphasis> 用户身份执行一些操作。 选择如上所示的选项。 这样 <emphasis role="strong">Installer</emphasis> 将自动执行这些操作。 填写 <emphasis role="strong">root</emphasis> 用户的密码。点击 <emphasis
+                                role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Prerequisite
-                            Check</emphasis>s.</para>
+                        <para>下一步为 <emphasis role="strong">Prerequisite
+                            Check</emphasis>。</para>
                         <figure>
                             <title>Prerequisite Checks 1</title>
                             <mediaobject>
@@ -525,9 +498,7 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Perform the prerequisite check as shown on the screen above. Click
-                                <emphasis role="strong">Fix&amp;Check Again</emphasis> to recheck
-                            the system.</para>
+                        <para>如上图所示，执行先决条件检查。 点击 <emphasis role="strong">Fix&amp;Check Again</emphasis> 以重新检查系统。</para>
                         <figure>
                             <title>Prerequisite Checks 2</title>
                             <mediaobject>
@@ -541,9 +512,9 @@ d<?xml version="1.0" encoding="UTF-8"?>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Follow the prompts, and run the fixup script as <emphasis
-                                role="strong">root</emphasis> manually on each node. Click <emphasis
-                                role="strong">OK</emphasis>.</para>
+                        <para>按照提示操作，在每个节点上以 <emphasis
+                                role="strong">root</emphasis> 身份手动运行 fixup 脚本。点击 <emphasis
+                                role="strong">OK</emphasis>。</para>
                         <screen><emphasis role="red">c2n1:/home #</emphasis> /tmp/CVU_12.1.0.2.0_oracle/runfixup.sh
 All Fix-up operations were completed successfully.
 <emphasis role="red">c2n1:/home #</emphasis></screen>
@@ -560,12 +531,11 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>On the <emphasis role="strong">Fixup Result</emphasis> tab, activate
-                            the option <emphasis role="strong">Ignore All</emphasis>. Click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>在 <emphasis role="strong">Fixup Result</emphasis> 选项卡上，选中 <emphasis role="strong">Ignore All</emphasis> 选项。 点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Review the <emphasis role="strong">Summary</emphasis>.</para>
+                        <para>查看 <emphasis role="strong">Summary</emphasis>。</para>
                         <figure>
                             <title>Summary</title>
                             <mediaobject>
@@ -579,12 +549,11 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Review the installation <emphasis role="strong">Summary</emphasis> as
-                            shown above. If everything is correct, click <emphasis role="strong"
-                                >Install</emphasis> to continue.</para>
+                        <para>查看安装 <emphasis role="strong">Summary</emphasis>，如上所示。 如果一切正确，点击 <emphasis role="strong"
+                                >Install</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Install the product.</para>
+                        <para>安装产品。</para>
                         <figure>
                             <title>Install Product - Progress</title>
                             <mediaobject>
@@ -598,7 +567,7 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>The packages are being installed.</para>
+                        <para>正在安装软件包。</para>
                         <figure>
                             <title>Install Product - Configuration Steps </title>
                             <mediaobject>
@@ -612,11 +581,9 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>The action <emphasis role="strong">prepare for configuration
-                                steps</emphasis> is to be completed. At this point you first need to
-                            install the Oracle Patch 18456643. After that, click <emphasis
-                                role="strong">Yes</emphasis> to run the configuration
-                            scripts.</para>
+                        <para><emphasis role="strong">prepare for configuration
+                                steps</emphasis> 的操作将完成。 此时，首先需要安装 Oracle Patch 18456643。然后，点击 <emphasis
+                                role="strong">Yes</emphasis> 以运行配置脚本。</para>
                         <figure>
                             <title>Install Product - Verification Utility </title>
                             <mediaobject>
@@ -630,9 +597,9 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>An error message will pop up <emphasis role="strong">Oracle Cluster
-                                Verification Utility failed</emphasis>. Ignore the error and click
-                                <emphasis role="strong">OK</emphasis> to continue.</para>
+                        <para>将弹出一条错误消息 <emphasis role="strong">Oracle Cluster
+                                Verification Utility failed</emphasis> 失败。 忽略该错误，点击
+                                <emphasis role="strong">OK</emphasis> 继续。</para>
                         <figure>
                             <title>Install Product - Setup Completed </title>
                             <mediaobject>
@@ -646,8 +613,8 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>When the setup is completed, click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>完成设置后，点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                         <figure>
                             <title>Install Product - Setup Completed Message</title>
                             <mediaobject>
@@ -661,9 +628,7 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>An error message will pop up to inform you about some configuration
-                            assistants that failed. Click <emphasis role="strong">Yes</emphasis> to
-                            confirm.</para>
+                        <para>将弹出一条错误消息，通知您一些失败的配置助手。点击 <emphasis role="strong">Yes</emphasis> 以确认。</para>
                         <figure>
                             <title>Install Product - Finish</title>
                             <mediaobject>
@@ -677,16 +642,15 @@ All Fix-up operations were completed successfully.
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>You have now finished the installation of the Oracle Grid
-                            Infrastructure for a Cluster.</para>
+                        <para>您现在已经完成了群集的 Oracle Grid Infrastructure 的安装。</para>
                     </step>
                 </procedure>
             </sect3>
             <sect3 xml:id="sec.grid_infra_post_installation">
-                <title>Post-Installation Checks</title>
+                <title>安装后检查</title>
                 <procedure>
                     <step>
-                        <para>Check the Oracle Clusterware health:</para>
+                        <para>检查 Oracle Clusterware 运行状况：</para>
                         <screen><emphasis role="strong">oracle@c2n1:~> /home/grid/bin/crsctl check cluster -all</emphasis>
 **************************************************************
 c2n1:
@@ -711,7 +675,7 @@ CRS-4533: Event Manager is online
 **************************************************************</screen>
                     </step>
                     <step>
-                        <para>Check the Oracle Clusterware resources:</para>
+                        <para>检查 Oracle Clusterware 资源：</para>
                         <screen><emphasis role="strong">oracle@c2n1:~> /home/grid/bin/srvctl status nodeapps</emphasis>
 VIP c2n1-vip.provo.novell.com is enabled
 VIP c2n1-vip.provo.novell.com is running on node: c2n1
@@ -733,7 +697,7 @@ ONS daemon is running on node: c2n3
 ONS daemon is running on node: c2n2</screen>
                     </step>
                     <step>
-                        <para>Check the status of the designated resources:</para>
+                        <para>检查相应资源的状态：</para>
                         <screen><emphasis role="strong">oracle@c2n1:~> /home/grid/bin/crsctl stat res -t</emphasis>
 --------------------------------------------------------------------------------
 Name        Target State      Server                   State details
@@ -805,7 +769,7 @@ ora.scan3.vip
  </screen>
                     </step>
                     <step>
-                        <para>Check OCR and the Voting disk files:</para>
+                        <para>检查OCR和 Voting disk 文件：</para>
                         <screen><emphasis role="strong">oracle@c2n1:~> /home/grid/bin/ocrcheck</emphasis>
 Status of Oracle Cluster Registry is as follows :
         Version                  :          4
@@ -843,22 +807,20 @@ Located 3 voting disk(s).
         </sect2>
 
         <sect2 xml:id="sec.database">
-            <title>Installing Oracle Database</title>
+            <title>安装 Oracle 数据库</title>
 
             <sect3 xml:id="sec.db_install_prep">
-                <title>Preparation</title>
-                <para>Log in to the SUSE Linux Enterprise Server 12 64-bit OS as a non-admin user.
-                    Download the Oracle Database 12c Release 1 (12.1.0.2.0) for Linux x86-64.</para>
-                <para>Extract <filename>grid.zip</filename> and run the installer
-                        <command>'./runInstaller'</command> from Database ShipHome.</para>
+                <title>准备步骤</title>
+                <para>以非管理员用户身份登录 &sls; 12 64位操作系统。 下载适用于 Linux x86-64 的Oracle Database 12c Release 1 (12.1.0.2.0)。</para>
+                <para>提取 <filename>grid.zip</filename> 并从 Database ShipHome 运行安装程序 <command>'./runInstaller'</command> 。</para>
             </sect3>
 
             <sect3 xml:id="sec.db_installation">
-                <title>Installation</title>
-                <para>For the actual installation, follow the steps below:</para>
+                <title>安装</title>
+                <para>对于实际安装，请按照以下步骤操作：</para>
                 <procedure>
                     <step>
-                        <para>Select <emphasis role="strong">Configure Security
+                        <para>选择 <emphasis role="strong">Configure Security
                             Updates</emphasis></para>
                         <figure>
                             <title>Configure Security Updates </title>
@@ -873,11 +835,10 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Provide your e-mail address to be informed of security issues, then
-                            click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>提供您的电子邮件地址以了解安全问题，然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Installation Option</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Installation Option</emphasis>。</para>
                         <figure>
                             <title>Installation Option</title>
                             <mediaobject>
@@ -891,12 +852,11 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis>Install database software only</emphasis>,
-                            then click <emphasis>Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis>Install database software only</emphasis>，然后点击 <emphasis>Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Grid Installation
-                            Options</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Grid Installation
+                            Options</emphasis>。</para>
                         <figure>
                             <title>Grid Installation Options</title>
                             <mediaobject>
@@ -910,13 +870,12 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Oracle Real Application
-                                Clusters database installation</emphasis>, then click <emphasis
-                                role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Oracle Real Application
+                                Clusters database installation</emphasis>，然后点击 <emphasis
+                                role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Go to <emphasis role="strong">Nodes Selection</emphasis> to select
-                            from the list of nodes.</para>
+                        <para>转到 <emphasis role="strong">Nodes Selection</emphasis> 以从节点列表中进行选择节点。</para>
                         <figure>
                             <title>Nodes Selection</title>
                             <mediaobject>
@@ -930,11 +889,11 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select all nodes in the cluster, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择群集中的所有节点，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Product Languages</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Product Languages</emphasis>。</para>
                         <figure>
                             <title>Product Languages</title>
                             <mediaobject>
@@ -948,11 +907,11 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select all languages, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择所有语言，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Select the <emphasis role="strong">Database Edition</emphasis>.</para>
+                        <para>选择 <emphasis role="strong">Database Edition</emphasis>。</para>
                         <figure>
                             <title>Database Edition</title>
                             <mediaobject>
@@ -966,13 +925,13 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Enterprise
-                                Edition</emphasis>, then click <emphasis role="strong"
-                                >Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Enterprise
+                                Edition</emphasis>，然后点击 <emphasis role="strong"
+                                >Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Specify the <emphasis role="strong">Installation
-                            Location</emphasis>.</para>
+                        <para>指定 <emphasis role="strong">Installation
+                            Location</emphasis>。</para>
                         <figure>
                             <title>Installation Location</title>
                             <mediaobject>
@@ -986,13 +945,13 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Fill in the <emphasis role="strong">Oracle base</emphasis> and the
-                                <emphasis role="strong">Software location</emphasis> as shown above,
-                            then click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>如上所示，填入 <emphasis role="strong">Oracle base</emphasis> 和 
+                                <emphasis role="strong">Software location</emphasis>。
+                            然后，点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Define the privileged <emphasis role="strong">Operating System
-                                Groups</emphasis>.</para>
+                        <para>定义特权 <emphasis role="strong">Operating System
+                                Groups</emphasis>。</para>
                         <figure>
                             <title>Operating System Groups</title>
                             <mediaobject>
@@ -1006,12 +965,12 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>The privileged Operating System groups are selected by default. Click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>特权操作系统组为默认选择。 点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Perform the <emphasis role="strong">Prerequisite Checks
-                            </emphasis>.</para>
+                        <para>执行 <emphasis role="strong">Prerequisite Checks
+                            </emphasis>。</para>
                         <figure>
                             <title>Prerequisite Checks</title>
                             <mediaobject>
@@ -1025,9 +984,7 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Perform the pre-check as shown above; to recheck the system. Click
-                                <emphasis role="strong">Fix&amp;Check Again</emphasis> to
-                            continue.</para>
+                        <para>如上图所示，执行先决条件检查，重新检查系统。点击 <emphasis role="strong">Fix&amp;Check Again</emphasis> 继续。</para>
                         <figure>
                             <title>Fixup Script</title>
                             <mediaobject>
@@ -1041,14 +998,12 @@ Located 3 voting disk(s).
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Follow the prompts. Manually run the fixup script as
-                                <quote>root</quote> user on each node, then click <emphasis
-                                role="strong">OK</emphasis>.</para>
-                        <para>You should see the following output:</para>
+                        <para>按照提示操作，在每个节点上以 <quote>root</quote> 身份手动运行 fixup 脚本。点击 <emphasis
+                                role="strong">OK</emphasis>。</para>
+                        <para>您应该看到以下输出：</para>
                         <screen><emphasis role="red">c2n1 ~ #:</emphasis> /tmp/CVU_12.1.0.2.0_oracle/runfixup.sh
 All Fix-up operations were completed successfully.</screen>
-                        <para>Check the <emphasis role="strong">Fixup Results</emphasis>
-                            here:</para>
+                        <para>在此处检查 <emphasis role="strong">Fixup Results</emphasis>：</para>
                         <figure>
                             <title>Fixup Results</title>
                             <mediaobject>
@@ -1062,8 +1017,7 @@ All Fix-up operations were completed successfully.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Check the <emphasis role="strong">Verification Results</emphasis>
-                            here:</para>
+                        <para>在此处检查 <emphasis role="strong">Verification Results</emphasis>：</para>
                         <figure>
                             <title>Verification Results</title>
                             <mediaobject>
@@ -1077,11 +1031,11 @@ All Fix-up operations were completed successfully.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select the option <emphasis role="strong">Ignore All</emphasis>, then
-                            click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Ignore All</emphasis>，然后
+                            点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Review the <emphasis role="strong">Summary</emphasis>.</para>
+                        <para>查看 <emphasis role="strong">Summary</emphasis>。</para>
                         <figure>
                             <title>Summary</title>
                             <mediaobject>
@@ -1095,11 +1049,11 @@ All Fix-up operations were completed successfully.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>If you see the installation summary as shown above, click <emphasis
-                                role="strong">Install</emphasis> to continue.</para>
+                        <para>如果您看到如上所示的安装摘要，点击 <emphasis
+                                role="strong">Install</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Install Product</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Install Product</emphasis>。</para>
                         <figure>
                             <title>Install Product</title>
                             <mediaobject>
@@ -1113,8 +1067,7 @@ All Fix-up operations were completed successfully.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>While the product loads, a window pops up where you can execute the
-                            configuration scripts.</para>
+                        <para>在加载产品时，会弹出一个窗口，您可以在其中执行配置脚本。</para>
                         <figure>
                             <title>Execute Configuration Scripts</title>
                             <mediaobject>
@@ -1128,10 +1081,10 @@ All Fix-up operations were completed successfully.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Execute <filename>root.sh</filename> as the <emphasis role="strong"
-                                >root</emphasis> user in each cluster node, then click <emphasis
-                                role="strong">OK</emphasis> to continue.</para>
-                        <para>You will see the following output:</para>
+                        <para>在每个群集节点中以 <emphasis role="strong"
+                                >root</emphasis> 用户身份执行 <filename>root.sh</filename>，然后点击 <emphasis
+                                role="strong">OK</emphasis> 继续。</para>
+                        <para>您将看到以下输出：</para>
                         <screen><emphasis role="red">c2n1:~ #</emphasis> /home/oracle/app/product/12.1.0/dbhome_1/root.sh
 Performing root user operation.
 
@@ -1148,8 +1101,7 @@ Entries will be added to the /etc/oratab file as needed by
 Database Configuration Assistant when a database is created
 Finished running generic part of root script.
 Now product-specific root actions will be performed.</screen>
-                        <para>The next screen indicates that the installation has been finished
-                            successfully.</para>
+                        <para>下一页面表明安装已成功完成。</para>
                         <figure>
                             <title>Finish</title>
                             <mediaobject>
@@ -1165,16 +1117,15 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>The installation of your Oracle Database is finished. Click <emphasis
-                                role="strong">Close</emphasis> to close the screen.</para>
+                        <para>Oracle 数据库的安装已完成。点击 <emphasis
+                                role="strong">Close</emphasis> 以关闭页面。</para>
                     </step>
                 </procedure>
             </sect3>
 
             <sect3 xml:id="sec.asm_disk_group">
-                <title>Create ASM Disk Group</title>
-                <para>Use the ASM Configuration Assistant to create the ASM disk group for datafile
-                    storage.</para>
+                <title>创建 ASM 硬盘组</title>
+                <para>使用 ASM Configuration Assistant 创建用于数据文件存储的 ASM 磁盘组。</para>
                 <figure>
                     <title>ASM Configuration Assistant</title>
                     <mediaobject>
@@ -1186,16 +1137,15 @@ Now product-specific root actions will be performed.</screen>
                         </imageobject>
                     </mediaobject>
                 </figure>
-                <para>Follow the instructions displayed on the screen.</para>
+                <para>按照页面上显示的说明进行操作。</para>
             </sect3>
 
             <sect3 xml:id="sec.create_db">
-                <title>Create Oracle RAC 12.1.0.2 Database</title>
-                <para>Perform the following steps to create your Oracle RAC 12.1.0.2 database by
-                    using the Database Configuration Assistant:</para>
+                <title>创建 Oracle RAC 12.1.0.2 数据库</title>
+                <para>执行以下步骤以使用 Database Configuration Assistant 创建 Oracle RAC 12.1.0.2 数据库：</para>
                 <procedure>
                     <step>
-                        <para>Select <emphasis role="strong">Database Operation</emphasis>.</para>
+                        <para>选择 <emphasis role="strong">Database Operation</emphasis>。</para>
                         <figure>
                             <title>Database Operation</title>
                             <mediaobject>
@@ -1209,11 +1159,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Create Database</emphasis>,
-                            then click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Create Database</emphasis>，
+                            然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Creation Mode</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Creation Mode</emphasis>。</para>
                         <figure>
                             <title>Creation Mode</title>
                             <mediaobject>
@@ -1227,11 +1177,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Advanced Mode</emphasis>,
-                            then click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Advanced Mode</emphasis>，
+                            然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Define the <emphasis role="strong">Database Template</emphasis>.</para>
+                        <para>定义 <emphasis role="strong">Database Template</emphasis>。</para>
                         <figure>
                             <title>Database Template</title>
                             <mediaobject>
@@ -1245,12 +1195,12 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select the type of database you want to configure, then click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>选择要配置的数据库类型，然后点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Database
-                            Identification</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Database
+                            Identification</emphasis>。</para>
                         <figure>
                             <title>Database Identification</title>
                             <mediaobject>
@@ -1264,18 +1214,15 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Fill in the <emphasis role="strong">Global Database Name</emphasis> as
-                            shown above, then click <emphasis role="strong">Next</emphasis> to
-                            continue.</para>
+                        <para>如上所示，填入 <emphasis role="strong">Global Database Name</emphasis>
+                            ，然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                         <note>
                             <title>Container Database</title>
-                            <para>Oracle Database 12C supports the creation of a Container Database.
-                                This means you can also create a Container Database depending on
-                                your needs.</para>
+                            <para>Oracle Database 12C 支持创建容器数据库。 这意味着您还可以根据需要创建容器数据库。</para>
                         </note>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Database Placement</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Database Placement</emphasis>。</para>
                         <figure>
                             <title>Database Placement</title>
                             <mediaobject>
@@ -1289,12 +1236,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Review the <emphasis role="strong">Server Pools</emphasis> information
-                            as shown above. Click <emphasis role="strong">Next</emphasis> to
-                            continue.</para>
+                        <para>如上所示，查看 <emphasis role="strong">Server Pools</emphasis> 信息。
+                            点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Specify the <emphasis role="strong">Management Options</emphasis>.</para>
+                        <para>指定 <emphasis role="strong">Management Options</emphasis>。</para>
                         <figure>
                             <title>Management Options</title>
                             <mediaobject>
@@ -1308,11 +1254,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Specify the management options for the database, then click <emphasis
-                                role="strong">Next</emphasis> to continue.</para>
+                        <para>指定数据库的管理选项，然后点击 <emphasis
+                                role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Database Credentials</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Database Credentials</emphasis>。</para>
                         <figure>
                             <title>Database Credentials</title>
                             <mediaobject>
@@ -1326,11 +1272,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Specify the administrative password for the database users, then click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>指定数据库用户的管理密码，然后点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Storage Locations</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Storage Locations</emphasis>。</para>
                         <figure>
                             <title>Storage Locations</title>
                             <mediaobject>
@@ -1344,11 +1290,10 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Specify the database files storage information as shown above, then
-                            click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>如上所示，指定数据库文件存储信息，然后点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Database Options</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Database Options</emphasis>。</para>
                         <figure>
                             <title>Database Options</title>
                             <mediaobject>
@@ -1362,13 +1307,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>According to your needs, specify whether to add the schemas to
-                            your database. Click <emphasis role="strong">Next</emphasis> to
-                            continue.</para>
+                        <para>根据您的需要，指定是否将 schemas 添加到数据库。 点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Initialization
-                            Parameters</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Initialization
+                            Parameters</emphasis>。</para>
                         <figure>
                             <title>Initialization Parameters</title>
                             <mediaobject>
@@ -1382,12 +1325,12 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Choose the option <emphasis role="strong">Typical Settings</emphasis>
-                            and adjust the parameters to meet your requirements. Click <emphasis
-                                role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Typical Settings</emphasis>
+                            选项并调整参数以满足您的要求。 点击 <emphasis
+                                role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Creation Options</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Creation Options</emphasis>。</para>
                         <figure>
                             <title>Creation Options</title>
                             <mediaobject>
@@ -1401,12 +1344,12 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select the database creation options as shown above, then click
-                                <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>如上所示，选择数据库创建选项，然后点击
+                                <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Perform the <emphasis role="strong">Prerequisite
-                            Checks</emphasis>.</para>
+                        <para>执行 <emphasis role="strong">Prerequisite
+                            Checks</emphasis>。</para>
                         <figure>
                             <title>Prerequisite Checks</title>
                             <mediaobject>
@@ -1420,11 +1363,11 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Select the option <emphasis role="strong">Ignore All</emphasis>, then
-                            click <emphasis role="strong">Next</emphasis> to continue.</para>
+                        <para>选择 <emphasis role="strong">Ignore All</emphasis> 选项，然后
+                            点击 <emphasis role="strong">Next</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Review the <emphasis role="strong">Summary</emphasis>.</para>
+                        <para>查看 <emphasis role="strong">Summary</emphasis>。</para>
                         <figure>
                             <title>Summary</title>
                             <mediaobject>
@@ -1438,13 +1381,12 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>Review and check the information displayed in the <emphasis
-                                role="strong">Database Configuration Summary</emphasis> as shown
-                            above. Click <emphasis role="strong">Finish</emphasis> to
-                            continue.</para>
+                        <para>如上所示，查看并检查 <emphasis
+                                role="strong">Database Configuration Summary</emphasis> 中显示的信息。 
+                            点击 <emphasis role="strong">Finish</emphasis> 继续。</para>
                     </step>
                     <step>
-                        <para>Review the <emphasis role="strong">Progress Page</emphasis>.</para>
+                        <para>查看 <emphasis role="strong">Progress Page</emphasis>。</para>
                         <figure>
                             <title>Progress Page</title>
                             <mediaobject>
@@ -1458,11 +1400,10 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>The creation of your database is now progressing as shown above. Wait
-                            until the creation process is completed.</para>
+                        <para>如上所示，现在正在进行数据库的创建。 等到创建过程完成。</para>
                     </step>
                     <step>
-                        <para>Proceed to <emphasis role="strong">Finish</emphasis>.</para>
+                        <para>下一步为 <emphasis role="strong">Finish</emphasis>。</para>
                         <figure>
                             <title>Finish</title>
                             <mediaobject>
@@ -1476,18 +1417,17 @@ Now product-specific root actions will be performed.</screen>
                                 </imageobject>
                             </mediaobject>
                         </figure>
-                        <para>When the creation of the database is completed, some information is
-                            displayed on the screen as shown above. Click <emphasis role="strong"
-                                >Close</emphasis> to close the screen.</para>
+                        <para>如上所示，完成数据库的创建后，屏幕上会显示一些信息。 点击 <emphasis role="strong"
+                                >Close</emphasis> 关闭页面。</para>
                     </step>
                 </procedure>
             </sect3>
 
             <sect3 xml:id="sec.db_post_install_checks">
-                <title>Post-Installation Checks</title>
+                <title>安装后检查</title>
                 <procedure>
                     <step>
-                        <para>Verify the database status and the configuration.</para>
+                        <para>验证数据库状态和配置。</para>
                         <screen><emphasis role="strong">oracle@c2n1:~> export ORACLE_HOME=/home/oracle/app/product/12.1.0/dbhome_1</emphasis>
 <emphasis role="strong">oracle@c2n1:~> /home/oracle/app/product/12.1.0/dbhome_1/bin/srvctl status database -d susedb</emphasis>
 Instance SUSEDB_1 is running on node c2n2
@@ -1596,8 +1536,8 @@ ora.susedb.db
 --------------------------------------------------------------------------------</screen>
                     </step>
                     <step>
-                        <para>Verify the availability of your <emphasis role="strong">Oracle
-                        Enterprise Manager</emphasis>.</para>
+                        <para>验证 <emphasis role="strong">Oracle
+                        Enterprise Manager</emphasis> 的可用性。</para>
 
                         <figure>
                             <title>Oracle Enterprise Manager</title>
@@ -1620,31 +1560,29 @@ ora.susedb.db
     </sect1>
 
     <sect1 xml:id="sec.add_comments">
-        <title>Additional Comments</title>
+        <title>额外信息</title>
         <orderedlist>
             <listitem>
-                <para>Edit the CV_ASSUME_DISTID=SUSE11 parameter in
-                    database/stage/cvu/cv/admin/cvu_config &amp;
-                    grid/stage/cvu/cv/admin/cvu_config</para>
+                <para>编辑 database/stage/cvu/cv/admin/cvu_config &amp;
+                    grid/stage/cvu/cv/admin/cvu_config 中的 CV_ASSUME_DISTID=SUSE11 参数</para>
             </listitem>
             <listitem>
-                <para>Apply Patch 20737462 to address CVU issues relating to the lack of reference
-                    data</para>
+                <para>使用 Patch 20737462 解决与缺乏参考数据有关的 CVU 问题</para>
             </listitem>
             <listitem>
-                <para>Install libcap1 (libcap2 libraries are installed by default); for example
+                <para>安装 libcap1（libcap2 库已默认安装）例如
                     libcap1-1.10-59.61.x86_64 &amp; libcap1-32bit-1.10-59.61.x86_64</para>
             </listitem>
             <listitem>
-                <para>ksh is replaced by mksh; that is mksh-50-2.13.x86_64</para>
+                <para>ksh 已被 mksh 替代，即 mksh-50-2.13.x86_64</para>
             </listitem>
             <listitem>
-                <para>libaio has been renamed to libaio1 (that is libaio1-0.3.109-17.15.x86_64);
-                    ensure that libaio1 is installed</para>
+                <para>libaio 改名为 libaio1 （即 libaio1-0.3.109-17.15.x86_64）。
+                    请确保 libaio1 已安装</para>
             </listitem>
             <listitem>
-                <para>OUI may be invoked with -ignoreSysPreqs to temporarily workaround ongoing CVU
-                    check failures</para>
+                <para>OUI 可以用 -ignoreSysPreqs 启动来临时避免 CVU
+                    检查失败</para>
             </listitem>
         </orderedlist>
     </sect1>
